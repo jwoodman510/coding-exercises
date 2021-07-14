@@ -1,0 +1,40 @@
+:host {
+  .title {
+    text-align: center;
+  }
+
+  .lucky {
+    top: 5px;
+    right: 5px;
+    position: fixed;
+    background: black;
+    color: aqua;
+  }
+
+  .rover {
+    margin-top: 50px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    .empty {
+      margin: 20px;
+    }
+
+    .photos {
+      display: flex;
+      flex-wrap: wrap;
+
+      .photo {
+        height: 100px;
+        width: 100px;
+
+        img {
+          max-height: 100px;
+          width: auto;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<button class="home" [routerLink]="['/gallery']">Go Home</button>
+<button class="lucky" (click)="testMyLuck()">Feeling Lucky?</button>
+<div class="luck">
+  <div class="loading" *ngIf="loading$ | async"></div>
+  <div *ngIf="!(loading$ | async)">
+    <h4>{{ details$ | async }}</h4>
+    <div *ngIf="!(imgSrc$ | async)?.length">:( Try Again</div>
+    <img src="imgSrc$ | async"/>
+  </div>
+</div>
