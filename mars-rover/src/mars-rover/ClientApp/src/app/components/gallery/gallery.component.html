@@ -1,0 +1,13 @@
+<button class="lucky" [routerLink]="['/lucky']">Feeling Lucky?</button>
+<h1 class="title">Mars Rover Gallery</h1>
+<div class="rover" *ngFor="let rover of rovers$ | async">
+  <h2>{{rover.name}}</h2>
+  <div class="empty" *ngIf="!rover?.photos?.length">
+    <h4>N/A</h4>
+  </div>
+  <div class="photos" *ngIf="rover.photos?.length > 0">
+    <div class="photo" *ngFor="let photo of rover.photos">
+      <img src="{{ photo.imgSrc }}" />
+    </div>
+  </div>
+</div>
