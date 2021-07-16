@@ -4,7 +4,7 @@ namespace mars_rover.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public abstract class BaseController
+    public abstract class BaseController : Controller
     {
     }
 }

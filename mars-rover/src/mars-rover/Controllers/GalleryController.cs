@@ -17,5 +17,15 @@ namespace mars_rover.Controllers
 
         [HttpGet]
         public Task<IEnumerable<RoverPhotosModel>> Get() => _galleryService.GetAsync();
+
+        [HttpGet("Download")]
+        public async Task<IActionResult> Download()
+        {
+            var stream = await _galleryService.GetStreamAsync();
+
+            stream.Position = 0;
+
+            return File(stream, "application/zip", "gallery.zip");
+        }
     }
 }
