@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using mars_rover.Models;
-using mars_rover.Util;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

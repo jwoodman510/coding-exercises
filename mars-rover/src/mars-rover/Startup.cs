@@ -1,5 +1,4 @@
 ﻿using mars_rover.Services;
-using mars_rover.Util;
 using mars_rover_client.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

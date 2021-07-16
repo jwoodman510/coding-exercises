@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace mars_rover.Util
+namespace mars_rover.Services
 {
     public interface IDateFileParser
     {
