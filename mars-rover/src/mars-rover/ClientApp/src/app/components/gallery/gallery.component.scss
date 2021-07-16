@@ -3,12 +3,23 @@
     text-align: center;
   }
 
-  .lucky {
+  .lucky,
+  .download-btn {
     top: 5px;
-    right: 5px;
     position: fixed;
     background: black;
     color: aqua;
+    a {
+      color: aqua;
+    }
+  }
+
+  .lucky {
+    right: 5px;
+  }
+
+  .download-btn {
+    left: 5px;
   }
 
   .rover {
