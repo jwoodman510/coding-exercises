@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using mars_rover.Models;
-using System;
+using mars_rover.Util;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,18 +16,21 @@ namespace mars_rover.Services
     {
         private readonly IMapper _mapper;
         private readonly IRoverService _roverService;
+        private readonly IDateFileParser _dateFileParser;
 
         public GalleryService(
             IMapper mapper,
-            IRoverService roverService)
+            IRoverService roverService,
+            IDateFileParser dateFileParser)
         {
             _mapper = mapper;
             _roverService = roverService;
+            _dateFileParser = dateFileParser;
         }
 
         public async Task<IEnumerable<RoverPhotosModel>> GetAsync()
         {
-            var dates = await GetDatesAsync();
+            var dates = await _dateFileParser.GetDatesAsync("dates.txt");
             var rovers = await _roverService.GetRoversAsync();
 
             return await Task.WhenAll(rovers.Select(async rover =>
@@ -43,33 +45,6 @@ namespace mars_rover.Services
 
                 return roverPhotos;
             }));
-        }
-
-        private static async Task<IEnumerable<DateTime>> GetDatesAsync()
-        {
-            var dates = new List<DateTime>();
-
-            if (!File.Exists("dates.txt"))
-            {
-                return dates;
-            }
-
-            using var filestream = File.OpenRead("dates.txt");
-            using var streamReader = new StreamReader(filestream);
-
-            var line = await streamReader.ReadLineAsync();
-
-            while (line != null)
-            {
-                if (DateTime.TryParse(line, out DateTime dateTime))
-                {
-                    dates.Add(dateTime);
-                }
-
-                line = await streamReader.ReadLineAsync();
-            }
-
-            return dates.Distinct();
         }
     }
 }
